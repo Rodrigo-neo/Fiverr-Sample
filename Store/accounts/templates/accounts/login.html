@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/loginstyle.css' %}">
+        <title>Store</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="left">
+              <div class="header">
+                <h2 class="animation a1">Welcome Back</h2>
+                <h4 class="animation a2">Log in to your account using username and password</h4>
+              </div>
+              <form method="POST" action="">
+                {% csrf_token %}
+                <div class="form">
+                  <input type="text" name="username" class="form-field animation a3" placeholder="User Name">
+                  <input type="password" name="password" class="form-field animation a4" placeholder="Password">
+                  <p class="animation a5">
+                    <h5>Don't have an account?</h5>
+                    <a href="{% url 'register' %}">Register</a>
+                  </p>
+                  <input class="slide-hover-left-3" type="submit" value="LOG IN">
+                  
+                </div>
+                <div>
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                  <div class="g-recaptcha" data-sitekey="6LdtqOAZAAAAAMjB5a2zKb49_ToU4G-qocEg-g11"></div>
+  
+                </div>
+                {{ form.as_p}}
+              </form>
+              {% for message in messages %}
+					      <p id="messages">{{message}}</p>
+				      {% endfor %}			
+		
+            </div>
+            <div class="right"></div>
+          </div>
+    </body>
+</html>

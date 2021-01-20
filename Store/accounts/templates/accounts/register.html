@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/registerstyle.css' %}">
+        <title>Store</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="left">
+                <div class="header">
+                    <h2 class="animation a1">Join Us!</h2>
+                    <h4 class="animation a2">Fill the fields and Join us.</h4>
+                </div>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="form">
+                    <p class="animation a5">
+                        <h5>User Name</h5>
+                        {{form.username}}
+
+                        <h5>Email</h5>
+                        {{form.email}}
+
+                        <h5>Password</h5>
+                        {{form.password1}}
+
+                        <h5>Repeat your password</h5>
+                        {{form.password2}}
+                    </p>
+                     <p class="animation a5">
+                        <h5>Already have an account?</h5>
+                        <a href="{% url 'login' %}">Log In</a>
+                        
+                    </p>
+                    <input class="slide-hover-left-3" type="submit" value="Register account">
+                    </div>
+                </form>
+                {{form.errors}}
+            </div>
+            
+            <div class="right"></div>
+          </div>
+        <script>
+            var form_fields = document.getElementsByTagName('input');
+            form_fields[1].placeholder = 'Username';
+            form_fields[2].placeholder = 'Email';
+            form_fields[3].placeholder = 'Password';
+            form_fields[4].placeholder = 'Re-enter Password';
+
+            for (var field in form_fields){
+                form_fields[field].classNmae +='form-control';
+            }
+        </script>
+    </body>
+</html>
+
